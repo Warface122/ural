@@ -227,4 +227,3 @@ autocmd BufEnter * if winnr('$') == 1 && exists("t:NERDTreeBufName") && bufname(
 set clipboard=unnamedplus
 
 nnoremap <Leader>y "+y
-
