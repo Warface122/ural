@@ -97,6 +97,14 @@ nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 let g:fzf_preview_window = ['right:50%']
 let g:fzf_layout = { 'window': 'right:50%' }
 
+" Настройка fzf для использования grep вместо ag, если ag не найден
+let g:fzf_command_prefix = 'Fzf'
+let g:fzf_layout = { 'window': 'right:50%' }
+
+" Использовать grep вместо ag, если ag не установлен
+let g:fzf_preview_window = ['right:50%']
+let g:fzf_files_command = 'grep -r ""'  " использование grep для поиска файлов
+let g:fzf_preview_command = 'grep -r ""'  " использование grep для предварительного просмотра
 
 " Горячие клавиши для fzf
 
