@@ -35,6 +35,17 @@ autocmd VimEnter * if argc() == 0 | NERDTree | endif
 " Открытие/закрытие NERDTree с помощью Alt + n
 nnoremap <A-n> :NERDTreeToggle<CR>
 
+
+" Горячая клавиша для замены текста во всем файле (Leader+R)
+nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+" Горячая клавиша для замены выбранного текста (Leader+S)
+vnoremap <Leader>s :s/\<<C-r><C-w>\>//g<Left><Left>
+
+" Автоматическое выделение всех похожих слов при выделении текста
+nnoremap <Leader>f :let @/ = '\V\<'.expand('<cword>').'\>'<CR>
+
+
 " Горячие клавиши для работы с NERDTree
 " Открытие файла в новом горизонтальном сплите
 nmap <leader>i :NERDTreeFind<CR>
