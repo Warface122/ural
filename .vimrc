@@ -55,10 +55,6 @@ nmap <leader>v :NERDTreeToggle<CR>:wincmd V<CR>
 " Включение подсветки синтаксиса
 syntax enable
 
-" Установка цветовой схемы Gruvbox в темном режиме
-colorscheme iceberg
-set background=dark
-
 " Настройка отображения ошибок
 highlight MyError ctermfg=red guifg=red
 syntax match MyError /\<\(error\|ERROR!\|ERROR\)\>/
@@ -88,6 +84,10 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 call plug#end()
+
+" Установка цветовой схемы Gruvbox в темном режиме
+colorscheme iceberg
+set background=dark
 
 " Автоматическое открытие NERDTree при запуске Vim
 autocmd vimenter * NERDTree
