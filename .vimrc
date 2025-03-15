@@ -109,15 +109,11 @@ autocmd BufEnter * if winnr('$') == 1 && exists("t:NERDTreeBufName") && bufname(
 " Enable mouse support for all modes and system clipboard`
 set clipboard=unnamedplus
 
-nnoremap <Leader>y "+y
-vnoremap <Leader>y "+y
+nnoremap <C-C> "+y
+vnoremap <C-C> "+y
 
 
 " Горячая клавиша для замены текста во всем файле (Leader+R)
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
-" Горячая клавиша для замены выбранного текста (Leader+S)
-vnoremap <Leader>s :s/\<<C-r><C-w>\>//g<Left><Left>
 
-" Автоматическое выделение всех похожих слов при выделении текста
-nnoremap <Leader>f :let @/ = '\V\<'.expand('<cword>').'\>'<CR>
