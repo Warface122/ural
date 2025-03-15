@@ -108,15 +108,18 @@ vnoremap <C-C> "+y
 " Горячая клавиша для замены текста во всем файле (Leader+R)
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
-function! CloseCurrentTab()
-  if tabpagenr('$') > 1
-    execute 'tabclose'  " Закрывает текущую вкладку, если вкладок больше одной
+function! SmartQuit()
+  if winnr('$') == 1 && &filetype == 'nerdtree'
+    quit!  " Если в вкладке только NERDTree — закрываем вкладку
+  elseif winnr('$') > 1
+    quit  " Если есть другие окна — закрываем только текущее
   else
-    execute 'quitall'  " Если вкладка последняя — закрывает весь Vim
+    quitall!  " Если это последнее окно последней вкладки — закрываем Vim
   endif
 endfunction
 
-nnoremap <silent> :q :call CloseCurrentTab()<CR>
+nnoremap <silent> :q :call SmartQuit()<CR>
+
 
 
 
