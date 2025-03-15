@@ -92,6 +92,12 @@ vnoremap <C-C> "+y
 " Горячая клавиша для замены текста во всем файле (Leader+R)
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
+
+" Включить автоматический выбор первого элемента при открытии fzf
+let g:fzf_preview_window = ['right:50%']
+let g:fzf_layout = { 'window': 'right:50%' }
+
+
 " Горячие клавиши для fzf
 
 " Поиск файлов с помощью fzf
