@@ -50,18 +50,16 @@ set number
 call plug#begin('~/.vim/plugged')
 
 " Установка плагинов
-Plug 'preservim/nerdtree'
+
 Plug 'morhetz/gruvbox'
 Plug 'arzg/vim-colors-xcode'
-Plug 'ayu-theme/ayu-vim'
 Plug 'gkeep/iceberg-dark'
 Plug 'cocopon/iceberg.vim'
-Plug 'dracula/vim'
 Plug 'vim-airline/vim-airline'
 Plug 'joshdick/onedark.vim'
-Plug 'tomasr/molokai'
 Plug 'arcticicestudio/nord-vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
