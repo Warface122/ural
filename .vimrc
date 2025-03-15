@@ -98,7 +98,6 @@ vnoremap <Leader>u :<C-u>%s///
 
 " Автокоманда для закрытия текущего окна, включая NERDTree, с помощью :q
 autocmd BufEnter * if winnr('$') == 1 && exists("t:NERDTreeBufName") && bufname("%") == t:NERDTreeBufName | q | endif
-autocmd BufEnter * if &filetype == 'nerdtree' && winnr('$') == 1 | quit | endif
 
 " Enable mouse support for all modes and system clipboard`
 set clipboard=unnamedplus
@@ -106,8 +105,26 @@ set clipboard=unnamedplus
 nnoremap <C-C> "+y
 vnoremap <C-C> "+y
 
-
 " Горячая клавиша для замены текста во всем файле (Leader+R)
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+
+function! CloseNERDTreeAndWindow()
+  if &filetype == 'nerdtree'
+    if winnr('$') > 1
+      quit  " Закрываем только NERDTree, если есть другие окна
+    else
+      quit!  " Закрываем весь Vim, если это последнее окно
+    endif
+  else
+    quit  " Закрываем текущее окно, если это не NERDTree
+  endif
+endfunction
+
+nnoremap <silent> :q :call CloseNERDTreeAndWindow()<CR>
+
+
+
+
 
 
