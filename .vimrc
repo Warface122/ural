@@ -99,10 +99,8 @@ let g:fzf_layout = { 'window': 'right:50%' }
 
 " Настройка fzf для использования grep вместо ag, если ag не найден
 let g:fzf_command_prefix = 'Fzf'
-let g:fzf_layout = { 'window': 'right:50%' }
 
 " Использовать grep вместо ag, если ag не установлен
-let g:fzf_preview_window = ['right:50%']
 let g:fzf_files_command = 'grep -r ""'  " использование grep для поиска файлов
 let g:fzf_preview_command = 'grep -r ""'  " использование grep для предварительного просмотра
 
@@ -118,10 +116,8 @@ nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>h :History<CR>
 
 " Поиск по строкам в открытом файле с помощью fzf
-nnoremap <Leader>s :Ag<CR>
+" Заменим на использование grep, так как ag может не быть установлен
+nnoremap <Leader>s :Grep<CR>
 
 " Пример: поиск файлов с помощью fzf и указание путей
 nnoremap <Leader>g :GFiles<CR>
-
-
-
