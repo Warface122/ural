@@ -93,6 +93,40 @@ vnoremap <C-C> "+y
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 
+" 📂 Автозапуск Fern при старте Vim (открывает текущую папку)
+autocmd VimEnter * ++nested Fern . -drawer -toggle -reveal=%  
+
+" 🔁 Оставлять Fern открытым при переходе в файлы
+let g:fern#keep = 1
+
+" 🖥️ Переключение Fern с помощью <Leader>e
+nnoremap <Leader>e :Fern . -drawer -toggle -reveal=%<CR>
+
+" 🖱️ Открытие файлов в Fern с двойным щелчком
+let g:fern#default_hidden=1 " Показывать скрытые файлы (например, .gitignore)
+
+" 📌 Улучшенный вид
+let g:fern#renderer = "nerdfont" " Иконки (если установлены)
+
+" 📛 Убираем ошибки в терминале
+set termguicolors
+
+" 🚀 Улучшенные горячие клавиши в Fern
+augroup FernSettings
+  autocmd! *
+  autocmd FileType fern nnoremap <buffer> <CR> <Plug>(fern-action-open)
+  autocmd FileType fern nnoremap <buffer> o <Plug>(fern-action-open:select)
+  autocmd FileType fern nnoremap <buffer> t <Plug>(fern-action-open:tabedit)
+  autocmd FileType fern nnoremap <buffer> r <Plug>(fern-action-reload)
+  autocmd FileType fern nnoremap <buffer> m <Plug>(fern-action-move)
+  autocmd FileType fern nnoremap <buffer> c <Plug>(fern-action-copy)
+  autocmd FileType fern nnoremap <buffer> d <Plug>(fern-action-remove)
+  autocmd FileType fern nnoremap <buffer> n <Plug>(fern-action-new-file)
+  autocmd FileType fern nnoremap <buffer> N <Plug>(fern-action-new-dir)
+augroup END
+
+
+
 
 
 
