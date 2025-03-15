@@ -68,8 +68,8 @@ call plug#end()
 colorscheme iceberg
 set background=dark
 
-" Автоматическое открытие NERDTree при запуске Vim
-autocmd vimenter * NERDTree
+" Настройка coc-explorer
+let g:coc_global_extensions = ['coc-explorer']
 
 " Включение vim-airline и использование встроенной цветовой схемы gruvbox
 let g:airline#extensions#tabline#enabled = 1
