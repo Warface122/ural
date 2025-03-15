@@ -30,10 +30,10 @@ nnoremap <Leader>l :call OpenSelectedPath()<CR>
 vnoremap <Leader>l :<C-u>call OpenSelectedPath()<CR>
 
 " Автоматическое открытие NERDTree при запуске Vim
-autocmd VimEnter * if argc() == 0 | NERDTree | endif
+" autocmd VimEnter * if argc() == 0 | NERDTree | endif
 
 " Открытие/закрытие NERDTree с помощью Alt + n
-nnoremap <A-n> :NERDTreeToggle<CR>
+" nnoremap <A-n> :NERDTreeToggle<CR>
 
 
 " Горячая клавиша для замены текста во всем файле (Leader+R)
@@ -41,9 +41,9 @@ nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " Горячие клавиши для работы с NERDTree
 " Открытие файла в новом горизонтальном сплите
-nmap <leader>i :NERDTreeFind<CR>
+" nmap <leader>i :NERDTreeFind<CR>
 " Открытие файла в новом вертикальном сплите
-nmap <leader>v :NERDTreeToggle<CR>:wincmd V<CR>
+" nmap <leader>v :NERDTreeToggle<CR>:wincmd V<CR>
 
 " Включение подсветки синтаксиса
 syntax enable
@@ -108,16 +108,46 @@ vnoremap <C-C> "+y
 " Горячая клавиша для замены текста во всем файле (Leader+R)
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
-function! CloseCurrentTab()
+" Функция для закрытия вкладки с NERDTree
+function! CloseNERDTreeTab()
+  " Если текущий файл — это NERDTree
   if &filetype == 'nerdtree'
-    execute 'tabclose'  " Закрывает всю вкладку, если фокус в NERDTree
+    " Если это последняя вкладка, то закрываем весь Vim
+    if tabpagenr('$') == 1
+      quitall!  " Закрывает Vim
+    else
+      tabclose  " Закрывает текущую вкладку
+    endif
   else
-    quit  " Если не в NERDTree, просто закрывает текущее окно
+    quit  " Если не в NERDTree, просто закрывает окно
   endif
 endfunction
 
-nnoremap <silent> :q :call CloseCurrentTab()<CR>
+" Привязываем команду :q к функции CloseNERDTreeTab
+nnoremap <silent> :q :call CloseNERDTreeTab()<CR>
 
+" Автоматически открывать NERDTree при запуске, если нет аргументов
+autocmd VimEnter * if argc() == 0 | NERDTree | endif
+
+" Открытие/закрытие NERDTree с помощью Alt+n
+nnoremap <A-n> :NERDTreeToggle<CR>
+
+" Горячие клавиши для работы с NERDTree
+nnoremap <leader>i :NERDTreeFind<CR>
+nnoremap <leader>v :NERDTreeToggle<CR>:wincmd V<CR>
+
+" Автокоманда для закрытия текущего окна, включая NERDTree, с помощью :q
+autocmd BufEnter * if winnr('$') == 1 && exists("t:NERDTreeBufName") && bufname("%") == t:NERDTreeBufName | q | endif
+
+" Включение поддержки мыши
+set mouse=a
+
+" Включение поддержки системного буфера обмена
+set clipboard=unnamedplus
+
+" Горячие клавиши для копирования и вставки с системного буфера
+nnoremap <Leader>y "+y
+vnoremap <Leader>y "+y
 
 
 
