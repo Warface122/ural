@@ -98,8 +98,7 @@ vnoremap <Leader>u :<C-u>%s///
 
 " Автокоманда для закрытия текущего окна, включая NERDTree, с помощью :q
 autocmd BufEnter * if winnr('$') == 1 && exists("t:NERDTreeBufName") && bufname("%") == t:NERDTreeBufName | q | endif
-autocmd BufEnter * if &filetype == 'nerdtree' && tabpagenr('$') > 1 | execute 'tabclose' | endif
-
+autocmd BufEnter * if &filetype == 'nerdtree' && winnr('$') == 1 | quit | endif
 
 " Enable mouse support for all modes and system clipboard`
 set clipboard=unnamedplus
