@@ -59,7 +59,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'lambdalisue/fern.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -91,43 +92,22 @@ vnoremap <C-C> "+y
 " Горячая клавиша для замены текста во всем файле (Leader+R)
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
+" Горячие клавиши для fzf
 
-" 📂 Автозапуск Fern при старте Vim (открывает текущую папку)
-autocmd VimEnter * ++nested Fern . -drawer -toggle -reveal=%  
+" Поиск файлов с помощью fzf
+nnoremap <Leader>f :Files<CR>
 
-" 🔁 Оставлять Fern открытым при переходе в файлы
-let g:fern#keep = 1
+" Поиск буферов с помощью fzf
+nnoremap <Leader>b :Buffers<CR>
 
-" 🖥️ Переключение Fern с помощью <Leader>e
-nnoremap <Leader>e :Fern . -drawer -toggle -reveal=%<CR>
+" Поиск по истории команд с помощью fzf
+nnoremap <Leader>h :History<CR>
 
-" 🖱️ Открытие файлов в Fern с двойным щелчком
-let g:fern#default_hidden=1 " Показывать скрытые файлы (например, .gitignore)
+" Поиск по строкам в открытом файле с помощью fzf
+nnoremap <Leader>s :Ag<CR>
 
-" 📌 Улучшенный вид
-let g:fern#renderer = "nerdfont" " Иконки (если установлены)
-
-" 📛 Убираем ошибки в терминале
-set termguicolors
-
-" 🚀 Улучшенные горячие клавиши в Fern
-augroup FernSettings
-  autocmd! *
-  autocmd FileType fern nnoremap <buffer> <CR> <Plug>(fern-action-open)
-  autocmd FileType fern nnoremap <buffer> o <Plug>(fern-action-open:select)
-  autocmd FileType fern nnoremap <buffer> t <Plug>(fern-action-open:tabedit)
-  autocmd FileType fern nnoremap <buffer> r <Plug>(fern-action-reload)
-  autocmd FileType fern nnoremap <buffer> m <Plug>(fern-action-move)
-  autocmd FileType fern nnoremap <buffer> c <Plug>(fern-action-copy)
-  autocmd FileType fern nnoremap <buffer> d <Plug>(fern-action-remove)
-  autocmd FileType fern nnoremap <buffer> n <Plug>(fern-action-new-file)
-  autocmd FileType fern nnoremap <buffer> N <Plug>(fern-action-new-dir)
-augroup END
-
-
-
-
-
+" Пример: поиск файлов с помощью fzf и указание путей
+nnoremap <Leader>g :GFiles<CR>
 
 
 
