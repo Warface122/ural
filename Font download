@@ -17,4 +17,7 @@ Crate or open ~/.Xresources and add this taxt
 XTerm*faceName: JetBrainsMono Nerd Font
 XTerm*faceSize: 12
 
-Step:4 Reset(Close/Open) your terminal
+Step4: 
+run xrdb ~/.Xresources fort set config
+
+Step:5 Reset(Close/Open) your terminal
