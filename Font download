@@ -21,3 +21,9 @@ Step4:
 run xrdb ~/.Xresources fort set config
 
 Step:5 Reset(Close/Open) your terminal
+
+
+
+
+//" Установка шрифта для графического интерфейса Vim
+set guifont=JetBrainsMono\ Nerd\ Font:h12
