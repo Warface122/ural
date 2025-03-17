@@ -149,3 +149,8 @@ function! NERDTreeOpenInVerticalSplit()
     exec "wincmd p | vsplit | NERDTreeMirror | wincmd p"
   endif
 endfunction
+
+
+" Переключение между NERDTree и рабочей областью с помощью Tab
+map <Tab> :if &filetype == 'nerdtree'<Bar>wincmd p<Bar>else<Bar>NERDTreeFocus<Bar>endif<CR>
+map <S-Tab> :NERDTreeToggle<CR>
