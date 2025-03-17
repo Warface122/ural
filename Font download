@@ -1,5 +1,20 @@
+Step 1:
 mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts
-curl -fLo "FiraCode.zip" https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraCode.zip
-unzip FiraCode.zip
-rm FiraCode.zip
+curl -fLo "JetBrainsMono.zip" https://github.com/ryanoasis/nerd-fonts/releases/tag/v3.3.0/FiraCode.zip
+unzip JetBrainsmono.zip
+rm JetBrainsMono.zip
+or 
+Goto my directory copy /.local/share/fonts/JetBrainsMono folder to your /.local/share/fonts folder if you dont have font folder crate it 
+mkdir fonts
+
+Step 2:
+after downloading rfresh chache for xterm terminal 
+fc-cache -fv
+
+Step 3:
+Crate or open ~/.Xresources and add this taxt 
+XTerm*faceName: JetBrainsMono Nerd Font
+XTerm*faceSize: 12
+
+Step:4 Reset(Close/Open) your terminal
