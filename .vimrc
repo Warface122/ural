@@ -125,8 +125,7 @@ nnoremap <Leader>s :Grep<CR>
 nnoremap <Leader>g :GFiles<CR>
 
 " Автоматическое открытие NERDTree при запуске Vim, если открыта папка
-autocmd VimEnter * if argc() == 0 | NERDTree | endif
-
+autocmd VimEnter *  NERDTree
 " Закрытие Vim, если закрыто окно NERDTree
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_' && winnr('$') == 1 | quit | endif
 
