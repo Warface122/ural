@@ -61,6 +61,8 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -121,3 +123,30 @@ nnoremap <Leader>s :Grep<CR>
 
 " Пример: поиск файлов с помощью fzf и указание путей
 nnoremap <Leader>g :GFiles<CR>
+
+" Автоматическое открытие NERDTree при запуске Vim, если открыта папка
+autocmd VimEnter * if argc() == 0 | NERDTree | endif
+
+" Закрытие Vim, если закрыто окно NERDTree
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_' && winnr('$') == 1 | quit | endif
+
+" Горячие клавиши
+nnoremap <silent><leader>n :NERDTreeToggle<CR> " Открыть/закрыть NERDTree
+nnoremap <silent><leader>f :NERDTreeFind<CR> " Найти текущий файл в дереве
+autocmd FileType nerdtree nnoremap <buffer><silent> <leader><CR> :call NERDTreeOpenInVerticalSplit()<CR>
+
+" Настройки NERDTree
+let g:NERDTreeShowHidden=1 " Показывать скрытые файлы
+let g:NERDTreeMinimalUI=1 " Минималистичный интерфейс
+let g:NERDTreeDirArrows=1 " Показывать стрелки для директорий
+
+" Настройки иконок для файлов (если установлен vim-devicons)
+let g:webdevicons_enable_nerdtree=1
+let g:webdevicons_enable_nerdtree_git=1
+
+" Функция для открытия файлов в вертикальном сплите
+function! NERDTreeOpenInVerticalSplit()
+  if exists("g:NERDTree")
+    exec "wincmd p | vsplit | NERDTreeMirror | wincmd p"
+  endif
+endfunction
