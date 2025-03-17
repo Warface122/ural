@@ -138,12 +138,4 @@ let g:NERDTreeDirArrows=1 " Показывать стрелки для дире�
 let g:webdevicons_enable_nerdtree=1
 let g:webdevicons_enable_nerdtree_git=1
 
-nnoremap <C-Tab> :call ToggleNERDTree()<CR>
-
-function! ToggleNERDTree()
-    if exists("t:nerdtree") && t:nerdtree.isTabTree()
-        exe "NERDTreeClose"
-    else
-        exe "NERDTreeToggle"
-    endif
-endfunction
+nnoremap <C-Tab> <C-w>w
