@@ -130,6 +130,3 @@ nnoremap <C-g> :GFiles<CR>       " Поиск файлов в Git
 " Горячие клавиши для NERDTree
 nnoremap <C-t> :NERDTreeToggle<CR>    " Открыть/закрыть NERDTree
 nnoremap <C-Alt-f> :NERDTreeFind<CR>  " Найти текущий файл в NERDTree
-
-" Отключение любых конфликтных настроек, если они существуют
-" Используйте unmap для отключения ненужных горячих клавиш
