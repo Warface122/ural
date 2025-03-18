@@ -33,7 +33,7 @@ vnoremap <C-l> :<C-u>call OpenSelectedPath()<CR>
 " Отключение других назначений на <Ctrl+L>, если они есть
 unmap <C-l>
 
-" Настройка поведения команды :q для закрытия NERDTree и/или рабочего окна
+" Настройка поведения команды :q для закрытия NERDTree и/или рабочей области
 function! QuitWithNERDTree()
   " Если активен только NERDTree
   if bufname() =~ 'NERD_tree_' && winnr('$') == 1
@@ -46,9 +46,9 @@ function! QuitWithNERDTree()
   endif
 endfunction
 
-" Замена стандартной команды :q на новую логику
-command! -nargs=0 Q call QuitWithNERDTree()
-nnoremap :q :Q<CR>
+" Переопределение стандартной команды :q
+nnoremap :q :call QuitWithNERDTree()<CR>
+
 
 " Включение подсветки синтаксиса
 syntax enable
