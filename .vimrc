@@ -33,32 +33,32 @@ vnoremap <C-l> :<C-u>call OpenSelectedPath()<CR>
 " Отключение других назначений на <Ctrl+L>, если они есть
 unmap <C-l>
 
-" Настройка функции для последовательного закрытия NERDTree и терминала
+" Настройка функции для последовательного закрытия NERDTree и других окон
 function! CustomQuit()
-  " Если находимся в области NERDTree
-  if bufname() =~ 'NERD_tree_'
+  " Если единственное открытое окно - NERDTree, закрываем Vim
+  if bufname() =~ 'NERD_tree_' && winnr('$') == 1
+    quit
+  " Если NERDTree открыт вместе с другими окнами
+  elseif bufname() =~ 'NERD_tree_'
     execute 'NERDTreeClose'
-    " Повторное выполнение команды для полного выхода
-    if winnr('$') > 1
-      quit
-    endif
-  " Если терминал активен (проверка типа буфера)
+  " Если открыт терминал
   elseif &buftype == 'terminal'
     quit
+  " Если активен обычный буфер
   else
     quit
   endif
 endfunction
 
-" Привязка функции к команде :q
-nnoremap :q :call CustomQuit()<CR>
+" Переопределение команды :q на вызов CustomQuit
+command! -nargs=0 Q call CustomQuit()
 
-" Переназначение <Ctrl+T> для вызова команды :q
-nnoremap <C-t> :q<CR>
+" Привязка <Ctrl+T> для вызова команды :Q
+nnoremap <C-t> :Q<CR>
 
+" Авто-закрытие Vim, если остаётся только NERDTree
+autocmd BufEnter * if bufname() =~ 'NERD_tree_' && winnr('$') == 1 | quit | endif
 
-" Авто-закрытие Vim, если NERDTree остается последним открытым окном
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_' && winnr('$') == 1 | quit | endif
 
 
 " Включение подсветки синтаксиса
