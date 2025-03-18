@@ -14,3 +14,6 @@ make install
 Step 4:
 export PATH=$HOME/vim-install/bin:$PATH
 
+Step 5: 
+echo 'export PATH=$HOME/vim-install/bin:$PATH' >> ~/.bashrc
+
