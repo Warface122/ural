@@ -33,22 +33,29 @@ vnoremap <C-l> :<C-u>call OpenSelectedPath()<CR>
 " Отключение других назначений на <Ctrl+L>, если они есть
 unmap <C-l>
 
-" Настройка поведения команды :q для правильного закрытия
-function! QuitWithNERDTree()
-  " Проверить, открыт ли только NERDTree
-  if bufname() =~ 'NERD_tree_' && winnr('$') == 1
-    quit
-  " Если NERDTree открыт вместе с рабочей областью
-  elseif bufname() =~ 'NERD_tree_'
+" Настройка функции для последовательного закрытия NERDTree и терминала
+function! CustomQuit()
+  " Если находимся в области NERDTree
+  if bufname() =~ 'NERD_tree_'
     execute 'NERDTreeClose'
-  " Закрыть текущий буфер
+    " Повторное выполнение команды для полного выхода
+    if winnr('$') > 1
+      quit
+    endif
+  " Если терминал активен (проверка типа буфера)
+  elseif &buftype == 'terminal'
+    quit
   else
     quit
   endif
 endfunction
 
-" Переопределение команды :q для вызова новой логики
-nnoremap :q :call QuitWithNERDTree()<CR>
+" Привязка функции к команде :q
+nnoremap :q :call CustomQuit()<CR>
+
+" Переназначение <Ctrl+T> для вызова команды :q
+nnoremap <C-t> :q<CR>
+
 
 " Авто-закрытие Vim, если NERDTree остается последним открытым окном
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_' && winnr('$') == 1 | quit | endif
