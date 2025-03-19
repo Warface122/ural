@@ -24,14 +24,12 @@ nnoremap <C-.> <Nop>
 nnoremap <C-,> <Nop>
 
 " Настраиваем привязки
-" 1. Сохранить старый код для открытия пути в новом табе
+" 1. Старый код для открытия пути в новом табе
 nnoremap <Leader>l :execute 'tabedit ' . expand('<cfile>')<CR>
 xnoremap <Leader>l :execute 'tabedit ' . expand('<cfile>')<CR>
 
 " 2. Новый код для открытия файлов в режиме readonly при отсутствии прав
 nnoremap <C-l> :if filereadable(expand('<cfile>')) | if filewritable(expand('<cfile>')) | execute 'tabedit ' . expand('<cfile>') | else | execute 'tabedit ' . expand('<cfile>') | setlocal readonly | endif | else | echo "No such file or directory" | endif<CR>
-
-
 
 " 3. Ctrl+W для переключения между NERDTree и рабочим пространством
 nnoremap <C-w> :NERDTreeToggle<CR>
@@ -47,8 +45,8 @@ vnoremap <C-n> :%s/\<<C-r><C-w>\>/<C-r><C-w>/gc<Left><Left><Left>
 nnoremap <C-.> :tabnext<CR>
 nnoremap <C-,> :tabprevious<CR>
 
-" 7. NERDTree оптимизация
-autocmd VimEnter * if !argc() | NERDTree | endif
+" 7. NERDTree: автозапуск и оптимизация
+autocmd VimEnter * if !argc() | NERDTree | wincmd p | endif
 autocmd BufEnter * if bufname() == 'NERD_tree_' && winnr('$') == 1 | quit | endif
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeAutoDeleteBuffer = 1
