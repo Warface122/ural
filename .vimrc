@@ -37,6 +37,7 @@ endfunction
 nnoremap <C-l> :call OpenSelectedPath()<CR>
 vnoremap <C-l> :<C-u>call OpenSelectedPath()<CR>
 
+
 "" Configure the function for proper closing of NERDTree and other windows
 function! CustomQuit()
   " If this is NERDTree and only one window, completely exit Vim
