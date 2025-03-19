@@ -8,7 +8,8 @@ set encoding=utf-8
 set fileencoding=utf-8
 set termguicolors
 set termencoding=utf-8
-" Function to open the selected path
+
+" Функция открытия выбранного пути
 function! OpenSelectedPath()
   if mode() ==# 'v'
     let l:sel = getline("'<", "'>")
@@ -28,15 +29,13 @@ function! OpenSelectedPath()
   if filereadable(l:fullpath) || isdirectory(l:fullpath)
     execute 'tabnew ' . fnameescape(l:fullpath)
   else
-    echo "No such link: " . l:fullpath
+    echo "Нет такой ссылки: " . l:fullpath
   endif
 endfunction
 
-" Settings to use the function to open the path
-" Replace <Leader>l with <Ctrl+L>
+" Настройки для использования функции открытия пути
 nnoremap <C-l> :call OpenSelectedPath()<CR>
 vnoremap <C-l> :<C-u>call OpenSelectedPath()<CR>
-
 
 "" Configure the function for proper closing of NERDTree and other windows
 function! CustomQuit()
