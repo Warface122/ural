@@ -29,16 +29,16 @@ nnoremap <Leader>l :execute 'tabedit ' . expand('<cfile>')<CR>
 xnoremap <Leader>l :execute 'tabedit ' . expand('<cfile>')<CR>
 
 " 2. Новый код для открытия файлов в режиме readonly при отсутствии прав
-nnoremap <C-l> :if filereadable(expand('<cfile>')) |
-  \ if filewritable(expand('<cfile>')) |
-  \   execute 'tabedit ' . expand('<cfile>') |
-  \ else |
-  \   execute 'tabedit ' . expand('<cfile>') |
-  \   setlocal readonly |
-  \ endif |
-  \ else |
-  \   echo "No such file or directory" |
-  \ endif<CR>
+nnoremap <C-l> :if filereadable(expand('<cfile>')) \| 
+\ if filewritable(expand('<cfile>')) \| 
+\   execute 'tabedit ' . expand('<cfile>') \| 
+\ else \| 
+\   execute 'tabedit ' . expand('<cfile>') \| 
+\   setlocal readonly \| 
+\ endif \| 
+\ else \| 
+\   echo "No such file or directory" \| 
+\ endif<CR>
 
 " 3. Ctrl+W для переключения между NERDTree и рабочим пространством
 nnoremap <C-w> :NERDTreeToggle<CR>
