@@ -2,36 +2,34 @@
 call plug#begin('~/.vim/plugged')
 
 " Ваши плагины
-Plug 'mg979/vim-visual-multi'
-Plug 'preservim/nerdtree'
-Plug 'cocopon/iceberg.vim'
-Plug 'ryanoasis/vim-devicons'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'mg979/vim-visual-multi' " Мультикурсор
+Plug 'preservim/nerdtree' " Файловый менеджер
+Plug 'cocopon/iceberg.vim' " Цветовая схема Iceberg
+Plug 'ryanoasis/vim-devicons' " Значки файлов
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Подсветка синтаксиса
+Plug 'vim-airline/vim-airline' " Статусная строка
+Plug 'vim-airline/vim-airline-themes' " Темы для vim-airline
 
 call plug#end()
 
 " Цветовая схема Iceberg
 colorscheme iceberg
 
-" Конфликтные клавиши отключаются, чтобы избежать проблем
+" Отключение конфликтующих горячих клавиш
 nnoremap <C-l> <Nop>
 nnoremap <C-c> <Nop>
 nnoremap <C-w> <Nop>
 nnoremap <C-.> <Nop>
 nnoremap <C-,> <Nop>
 
-" Настраиваем свои привязки
-" 1. Ctrl+L для открытия пути в новом табе
-nnoremap <C-l> :execute 'tabedit ' . expand('<cfile>')<CR>
-xnoremap <C-l> :execute 'tabedit ' . expand('<cfile>')<CR>
-autocmd BufEnter * if !filereadable(expand('%')) | echo "No such directory" | endif
+" Настраиваем привязки
+" 1. Ctrl+L для открытия пути в новом табе (с readonly при отсутствии прав на запись)
+nnoremap <C-l> :execute 'tabedit ' . (filereadable(expand('<cfile>')) ? expand('<cfile>') : 'No such file') . (filewritable(expand('<cfile>')) ? '' : ' | set readonly')<CR>
 
 " 2. Ctrl+W для переключения между NERDTree и рабочим пространством
 nnoremap <C-w> :NERDTreeToggle<CR>
 
-" 3. Ctrl+C для копирования в буфер обмена
+" 3. Ctrl+C для копирования текста в буфер обмена
 vnoremap <C-c> "+y
 nnoremap <C-c> "+yy
 
@@ -43,23 +41,32 @@ nnoremap <C-.> :tabnext<CR>
 nnoremap <C-,> :tabprevious<CR>
 
 " 6. NERDTree оптимизация
+autocmd VimEnter * if !argc() | NERDTree | endif
+autocmd BufEnter * if bufname() == 'NERD_tree_' && winnr('$') == 1 | quit | endif
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeShowHidden = 1
+let g:NERDTreeIgnore = ['\.pyc$', '\~$', '\.swp$']
+let g:NERDTreeQuitOnOpen = 1
 
-" 7. Подсветка слов "error/ERROR/Error" красным цветом
+" 7. Подсветка слов "error/ERROR/Error"
 syntax match ErrorMsg /\<\([eE][rR][rR][oO][rR]\)\>/
 highlight ErrorMsg ctermfg=red guifg=red
 
-" 8. Оптимизация производительности
-set lazyredraw
-set noswapfile
-set nocompatible
-set encoding=utf-8
+" 8. Фиксация нумерации строк
 set number
 set relativenumber
+autocmd InsertEnter * set norelativenumber
+autocmd InsertLeave * set relativenumber
 
 " 9. vim-visual-multi (мультикурсор)
 let g:VM_maps = {}
 let g:VM_maps['Find Under'] = '<C-n>' " Использование Ctrl+N для выделения
 let g:VM_maps['Find Subword Under'] = '<C-s>'
+
+" 10. Оптимизация производительности
+set lazyredraw
+set noswapfile
+set nocompatible
+set encoding=utf-8
+set clipboard=unnamedplus
