@@ -73,7 +73,7 @@ syntax enable
 
 " Configure error highlighting
 highlight MyError ctermfg=red guifg=red
-syntax match MyError /\<error\|ERROR!\|ERROR\>/
+syntax match MyError /\<error\|ERROR!\|ERROR\>/
 
 " Hotkeys for tabs
 nnoremap <C-,> :tabprevious<CR>  " Switch to the previous tab
