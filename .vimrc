@@ -6,31 +6,38 @@ set fileencoding=utf-8
 set termguicolors
 set termencoding=utf-8
 
-" Function to open the selected path
 function! OpenSelectedPath()
   if mode() ==# 'v'
+    " Get selected text
     let l:sel = getline("'<", "'>")
     let l:path = join(l:sel, "\n")
   elseif getreg('*') != ''
+    " Use clipboard content
     let l:path = getreg('*')
   else
+    " Use the path under the cursor
     let l:path = expand('<cfile>')
   endif
 
+  " Trim spaces from the start and end
   let l:path = substitute(l:path, '^\s*\|\s*$', '', '')
 
+  " Resolve the path relative to the current file or absolute path
   if l:path !~ '^\(\/\|[A-Za-z]:\)' " Check for absolute path
+    " Fully resolve the relative path
     let l:fullpath = fnamemodify(expand('%:p:h') . '/' . l:path, ':p')
   else
     let l:fullpath = fnamemodify(l:path, ':p')
   endif
 
+  " Check if the file or directory exists
   if filereadable(l:fullpath) || isdirectory(l:fullpath)
     execute 'tabnew ' . fnameescape(l:fullpath)
   else
     echo "Path not found: " . l:fullpath
   endif
 endfunction
+
 
 " Settings for using the path-opening function
 nnoremap <C-l> :call OpenSelectedPath()<CR>
