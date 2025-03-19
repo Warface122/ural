@@ -2,6 +2,9 @@
 set mouse=a
 
 nnoremap <C-l> :tabe <cfile><CR>
+nnoremap <C-x> :b#<CR>
+nnoremap <C-S-l> :e <cfile><CR>
+
 
 "" Настройка функции для правильного закрытия NERDTree и других окон
 function! CustomQuit()
