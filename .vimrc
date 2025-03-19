@@ -37,8 +37,6 @@ endfunction
 nnoremap <C-l> :call OpenSelectedPath()<CR>
 vnoremap <C-l> :<C-u>call OpenSelectedPath()<CR>
 
-" Disable other assignments on <Ctrl+L> if any
-unmap <C-l>
 
 "" Configure the function for proper closing of NERDTree and other windows
 function! CustomQuit()
