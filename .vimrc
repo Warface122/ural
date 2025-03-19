@@ -24,15 +24,8 @@ nnoremap <C-h> <Nop>
 nnoremap <C-t> <Nop>
 
 " Настраиваем привязки
-" 1. Код для открытия файлов с поддержкой абсолютных путей
-nnoremap <C-l> :if filereadable(expand('<cfile>')) \| 
-  \ execute 'tabedit ' . expand('<cfile>') \| 
-  \ if !filewritable(expand('<cfile>')) \| 
-  \   setlocal readonly \| 
-  \ endif \| 
-  \ else \| 
-  \ echo "No such file or directory" \| 
-  \ endif<CR>
+" 1. Открытие пути через Ctrl+L с обработкой cd и пути до пробела
+nnoremap <C-l> :let path = expand('<cword>') | if filereadable(path) | execute 'tabedit ' . path | elseif isdirectory(path) | execute 'cd ' . path | echo "Directory changed to " . path | else | echo "Invalid file or directory" | endif<CR>
 
 " 2. Ctrl+E для переключения между вкладками вперёд, Ctrl+Q — назад
 nnoremap <C-e> :tabnext<CR>
