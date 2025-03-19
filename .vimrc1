@@ -1,4 +1,4 @@
-" Включение поддержки мыши
+" Enabling mouse support
 set mouse=a
 set lazyredraw
 "set t_ut=
@@ -8,7 +8,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 set termguicolors
 set termencoding=utf-8
-" Функция открытия выбранного пути
+" Function to open the selected path
 function! OpenSelectedPath()
   if mode() ==# 'v'
     let l:sel = getline("'<", "'>")
@@ -28,71 +28,71 @@ function! OpenSelectedPath()
   if filereadable(l:fullpath) || isdirectory(l:fullpath)
     execute 'tabnew ' . fnameescape(l:fullpath)
   else
-    echo "Нет такой ссылки: " . l:fullpath
+    echo "No such link: " . l:fullpath
   endif
 endfunction
 
-" Настройки для использования функции открытия пути
-" Замена <Leader>l на <Ctrl+L>
+" Settings to use the function to open the path
+" Replace <Leader>l with <Ctrl+L>
 nnoremap <C-l> :call OpenSelectedPath()<CR>
 vnoremap <C-l> :<C-u>call OpenSelectedPath()<CR>
 
-" Отключение других назначений на <Ctrl+L>, если они есть
+" Disable other assignments on <Ctrl+L> if any
 unmap <C-l>
 
-"" Настройка функции для правильного закрытия NERDTree и других окон
+"" Configure the function for proper closing of NERDTree and other windows
 function! CustomQuit()
-  " Если это NERDTree и только одно окно, полностью закрыть Vim
+  " If this is NERDTree and only one window, completely exit Vim
   if bufname() =~ 'NERD_tree_' && winnr('$') == 1
     quit
-  " Если это NERDTree, но есть другие окна
+  " If this is NERDTree but there are other windows
   elseif bufname() =~ 'NERD_tree_'
     execute 'NERDTreeClose'
-    " Проверяем, если это последний оставшийся буфер, закрыть Vim
+    " Check if this is the last remaining buffer, exit Vim
     if winnr('$') == 1
       quit
     endif
-  " Закрываем терминал или другие буферы
+  " Close terminal or other buffers
   else
     quit
   endif
 endfunction
 
-" Переопределение команды :q на вызов CustomQuit
+" Override the :q command to call CustomQuit
 command! -nargs=0 Q call CustomQuit()
 
-" Привязка <Ctrl+T> для вызова команды :Q
+" Bind <Ctrl+T> to call the :Q command
 nnoremap <C-t> :Q<CR>
 
-" Авто-закрытие Vim, если остаётся только NERDTree
+" Auto-close Vim if only NERDTree remains
 autocmd BufEnter * if bufname() =~ 'NERD_tree_' && winnr('$') == 1 | quit | endif
 
 
-" Включение подсветки синтаксиса
+" Enable syntax highlighting
 syntax enable
 
-" Настройка отображения ошибок
+" Configure error highlighting
 highlight MyError ctermfg=red guifg=red
 syntax match MyError /\<error\|ERROR!\|ERROR\>/
 
-" Горячие клавиши для вкладок
-nnoremap <C-,> :tabprevious<CR>  " Переключение на предыдущую вкладку
-nnoremap <C-.> :tabnext<CR>      " Переключение на следующую вкладку
+" Hotkeys for tabs
+nnoremap <C-,> :tabprevious<CR>  " Switch to the previous tab
+nnoremap <C-.> :tabnext<CR>      " Switch to the next tab
 
-" Горячие клавиши для окон
-nnoremap <C-w> <C-w>w           " Переключение между окнами
+" Hotkeys for windows
+nnoremap <C-w> <C-w>w           " Switch between windows
 
-" Включение номеров строк
+" Enable line numbers
 set number
 
-" Автооткрытие NERDTree при запуске, если открыта папка
+" Auto-open NERDTree on startup if a folder is opened
 autocmd VimEnter * NERDTree
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_' && winnr('$') == 1 | quit | endif
 
-" Инициализация менеджера плагинов Vim-Plug
+" Initialize Vim-Plug plugin manager
 call plug#begin('~/.vim/plugged')
 
-" Установка плагинов
+" Install plugins
 Plug 'morhetz/gruvbox'
 Plug 'arzg/vim-colors-xcode'
 Plug 'gkeep/iceberg-dark'
@@ -108,35 +108,35 @@ Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
-" Установка цветовой схемы
+" Set the color scheme
 colorscheme iceberg
 set background=dark
 
-" Включение vim-airline и использование цветовой схемы gruvbox
+" Enable vim-airline and use the gruvbox color scheme
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme='gruvbox'
 
-" Горячая клавиша для замены текста во всем файле (Ctrl+Shift+R)
+" Hotkey for replacing text in the whole file (Ctrl+Shift+R)
 nnoremap <C-S-r> :%s/\<<C-r><C-w>\>//g<Left><Left>
 
-" Включение системного буфера обмена
+" Enable system clipboard
 set clipboard=unnamedplus
 
-" Горячие клавиши для копирования в системный буфер
-nnoremap <C-C> "+y                " Копирование в системный буфер
-vnoremap <C-C> "+y                " Копирование выделенного текста в системный буфер
+" Hotkeys for copying to the system clipboard
+nnoremap <C-C> "+y                " Copy to the system clipboard
+vnoremap <C-C> "+y                " Copy selected text to the system clipboard
 
-" Горячие клавиши для fzf
-nnoremap <C-e> :Files<CR>        " Открытие файлов через fzf
-nnoremap <C-d> :Buffers<CR>      " Переключение между буферами
-nnoremap <C-h> :History<CR>      " Просмотр истории
-nnoremap <C-s> :Grep<CR>         " Поиск текста
-nnoremap <C-g> :GFiles<CR>       " Поиск файлов в Git
+" Hotkeys for fzf
+nnoremap <C-e> :Files<CR>        " Open files with fzf
+nnoremap <C-d> :Buffers<CR>      " Switch between buffers
+nnoremap <C-h> :History<CR>      " View history
+nnoremap <C-s> :Grep<CR>         " Search text
+nnoremap <C-g> :GFiles<CR>       " Search files in Git
 
-" Горячие клавиши для NERDTree
-nnoremap <C-t> :NERDTreeToggle<CR>    " Открыть/закрыть NERDTree
-nnoremap <C-Alt-f> :NERDTreeFind<CR>  " Найти текущий файл в NERDTree
+" Hotkeys for NERDTree
+nnoremap <C-t> :NERDTreeToggle<CR>    " Open/close NERDTree
+nnoremap <C-Alt-f> :NERDTreeFind<CR>  " Find the current file in NERDTree
 
 "autocmd InsertLeave * redraw! 
 "autocmd BufEnter * redraw!
