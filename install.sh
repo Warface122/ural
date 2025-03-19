@@ -18,7 +18,7 @@ echo "Обновляем PATH..."
 TARGET_FILE="$HOME/.bashrc.user"
 
 # Команда, которую нужно добавить
-export PATH=$HOME/vim-install/bin:$PATH
+COMMAND='export PATH=$HOME/vim-install/bin:$PATH'
 
 # Проверка, существует ли файл
 if [ ! -f "$TARGET_FILE" ]; then
