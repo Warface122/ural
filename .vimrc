@@ -7,23 +7,40 @@ set mouse=a
 
 function! OpenSelectedPath()
   if mode() =~# 'v'
+    " Получаем выделенный текст (визуальный режим)
     let l:sel = getline("'<", "'>")
-    let l:path = join(l:sel, "\n")
-  elseif getreg('*') != ''
-    let l:path = getreg('*')
+    let l:path = join(l:sel, "")
   else
+    " Используем путь под курсором
     let l:path = expand('<cfile>')
   endif
+
+  " Убираем пробелы в начале и конце строки
   let l:path = substitute(l:path, '^\s*\|\s*$', '', '')
-  let l:fullpath = fnamemodify(l:path, ':p')
-  let l:escaped_path = fnameescape(l:fullpath)
-  execute 'tabnew ' . l:escaped_path
+
+  " Преобразуем относительный путь в абсолютный
+  if l:path !~# '^/'
+    let l:fullpath = fnamemodify(expand('%:p:h') . '/' . l:path, ':p')
+  else
+    let l:fullpath = fnamemodify(l:path, ':p')
+  endif
+
+  " Проверяем, существует ли файл, и открываем его
+  if filereadable(l:fullpath)
+    execute 'tabnew ' . fnameescape(l:fullpath)
+  elseif isdirectory(l:fullpath)
+    execute 'tabnew ' . fnameescape(l:fullpath)
+  else
+    echo "Файл или директория не найдены: " . l:fullpath
+  endif
 endfunction
 
-
-" Настройки для использования функции открытия пути
+" Привязка клавиш
 nnoremap <C-l> :call OpenSelectedPath()<CR>
 vnoremap <C-l> :<C-u>call OpenSelectedPath()<CR>
+
+
+
 
 "" Настройка функции для правильного закрытия NERDTree и других окон
 function! CustomQuit()
