@@ -1,23 +1,9 @@
 " Включение поддержки мыши
 set mouse=a
 
-" Функция для открытия файла из текста под курсором в новой вкладке
-function! OpenFileUnderCursorInTab()
-  let l:file = expand('<cfile>') " Получить путь файла под курсором
-  if filereadable(l:file) " Проверить, существует ли файл
-    execute 'tabnew ' . l:file " Открыть файл в новой вкладке
-  else
-    echo "Файл не найден: " . l:file
-  endif
-endfunction
-
-" Назначить Ctrl+l для вызова функции
-nnoremap <C-l> :call OpenFileUnderCursorInTab()<CR>
-
-
-"nnoremap <C-l> :tabe <cfile><CR>
-"nnoremap <C-x> :b#<CR>
-"nnoremap <C-S-l> :e <cfile><CR>
+nnoremap <C-l> :tabenew <cfile><CR>
+nnoremap <C-x> :b#<CR>
+nnoremap <C-S-l> :e <cfile><CR>
 
 
 "" Настройка функции для правильного закрытия NERDTree и других окон
