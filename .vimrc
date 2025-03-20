@@ -119,3 +119,8 @@ function! OpenSelectedPath()
     echo "Нет такой ссылки: " . l:fullpath
   endif
 endfunction
+
+
+" Настройки для использования функции открытия пути
+nnoremap <C-l> :call OpenSelectedPath()<CR>
+vnoremap <C-l> :<C-u>call OpenSelectedPath()<CR>
