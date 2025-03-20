@@ -1,7 +1,7 @@
 " Включение поддержки мыши
 set mouse=a
 
-nnoremap <C-l> :tabenew <cfile><CR>
+nnoremap <C-l> :tabnew <cfile><CR>
 nnoremap <C-x> :b#<CR>
 nnoremap <C-S-l> :e <cfile><CR>
 
