@@ -1,8 +1,7 @@
 " Включение поддержки мыши
 set mouse=a
 
-" Проверка файла под курсором и открытие его в новой вкладке
-nnoremap <C-l> :let filename = expand('<cfile>')<CR>:if filename != '' | execute 'tabnew '.filename | else | echo 'Нет файла под курсором!' | endif<CR>
+nnoremap <C-l> :let filename = expand('<cfile>')<CR>:if filename != ''<CR>:tabnew <Bar> edit <Bar> execute 'edit '.filename<CR>:else<CR>:echo 'Нет файла под курсором!'<CR>:endif<Bar>:close
 
 "nnoremap <C-l> :tabe <cfile><CR>
 nnoremap <C-x> :b#<CR>
