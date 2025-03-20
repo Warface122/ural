@@ -7,36 +7,19 @@ set mouse=a
 
 function! OpenSelectedPath()
   if mode() =~# 'v'
-    " Получаем выделенный текст в визуальном режиме
     let l:sel = getline("'<", "'>")
     let l:path = join(l:sel, "\n")
   elseif getreg('*') != ''
-    " Получаем путь из системного буфера обмена
     let l:path = getreg('*')
   else
-    " Используем путь под курсором
     let l:path = expand('<cfile>')
   endif
-  " Удаляем пробелы в начале и конце строки
   let l:path = substitute(l:path, '^\s*\|\s*$', '', '')
-
-  " Проверяем относительный или абсолютный путь
-  if l:path !~# '^/'
-    let l:fullpath = fnamemodify(expand('%:p:h') . '/' . l:path, ':p')
-  else
-    let l:fullpath = fnamemodify(l:path, ':p')
-  endif
-
-  " Убеждаемся, что путь корректно экранирован
+  let l:fullpath = fnamemodify(l:path, ':p')
   let l:escaped_path = fnameescape(l:fullpath)
-
-  " Проверяем, существует ли файл или директория
-  if filereadable(l:escaped_path) || isdirectory(l:escaped_path)
-    execute 'tabnew ' . l:escaped_path
-  else
-    echo "Нет такой ссылки: " . l:escaped_path
-  endif
+  execute 'tabnew ' . l:escaped_path
 endfunction
+
 
 " Настройки для использования функции открытия пути
 nnoremap <C-l> :call OpenSelectedPath()<CR>
