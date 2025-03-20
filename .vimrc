@@ -6,6 +6,19 @@ set mouse=c
 set wrapscan
 set hlsearch
 
+
+"Turn off all this keys
+nnoremap a <nop>
+nnoremap A <nop>
+nnoremap o <nop>
+nnoremap O <nop>
+vnoremap a <nop>
+vnoremap A <nop>
+vnoremap o <nop>
+vnoremap O <nop>
+vnoremap <C-v> <nop>
+
+
 " Горячие клавиши для вкладок
 nnoremap <C-q> :tabp<CR>  " Переключение на предыдущую вкладку
 nnoremap <C-e> :tabn<CR>      " Переключение на следующую вкладку
