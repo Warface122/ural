@@ -93,3 +93,29 @@ vnoremap <C-C> "+y                " Копирование выделенног�
 " Горячие клавиши для NERDTree
 nnoremap <C-t> :NERDTreeToggle<CR>    " Открыть/закрыть NERDTree
 nnoremap <C-Alt-f> :NERDTreeFind<CR>  " Найти текущий файл в NERDTree
+
+
+
+" Функция открытия выбранного пути
+function! OpenSelectedPath()
+  if mode() ==# 'v'
+    let l:sel = getline("'<", "'>")
+    let l:path = join(l:sel, "\n")
+  elseif getreg('*') != ''
+    let l:path = getreg('*')
+  else
+    let l:path = expand('<cfile>')
+  endif
+  let l:path = substitute(l:path, '^\s*\|\s*$', '', '')
+  if l:path !~ '^/'
+    let l:fullpath = expand('%:p:h') . '/' . l:path
+  else
+    let l:fullpath = l:path
+  endif
+  let l:fullpath = fnamemodify(l:fullpath, ':p')
+  if filereadable(l:fullpath) || isdirectory(l:fullpath)
+    execute 'tabnew ' . fnameescape(l:fullpath)
+  else
+    echo "Нет такой ссылки: " . l:fullpath
+  endif
+endfunction
