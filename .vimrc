@@ -4,6 +4,8 @@ set mouse=a
 set wrapscan
 set hlsearch
 
+set timeout timeoutlen=10
+
 " Настройка выхода из всех режимов при нажатии Esc
 inoremap <Esc> <Esc>         " Выход из режима вставки
 vnoremap <Esc> <Esc>         " Выход из визуального режима
