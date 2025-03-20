@@ -1,9 +1,7 @@
 " Включение поддержки мыши
 set mouse=a
 
-nnoremap <C-l> :let filename = expand('<cfile>')<CR>:if filename != ''<CR>:tabnew <Bar> edit <Bar> execute 'edit '.filename<CR>:else<CR>:echo 'Нет файла под курсором!'<CR>:endif<Bar>:close
-
-"nnoremap <C-l> :tabe <cfile><CR>
+nnoremap <C-l> :tabe <cfile><CR>
 nnoremap <C-x> :b#<CR>
 nnoremap <C-S-l> :e <cfile><CR>
 
