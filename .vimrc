@@ -110,5 +110,4 @@ nnoremap <C-C> "+y                " Копирование в системный
 vnoremap <C-C> "+y                " Копирование выделенного текста в системный буфер
 
 " Горячие клавиши для NERDTree
-nnoremap <C-t> :NERDTreeToggle<CR>    " Открыть/закрыть NERDTree
-n
+nnoremap <C-t> :NERDTreeToggle<CR>    " Открыть/закрыть NERDTreen
