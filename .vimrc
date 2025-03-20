@@ -1,9 +1,18 @@
 " Включение поддержки мыши
-set mouse=a
+set mouse=n
+set mouse=i
+set mouse=v
+set mouse=c
+set wrapscan
+set hlsearch
 
-nnoremap <C-k> :tabnew <cfile><CR>
+" Горячие клавиши для вкладок
+nnoremap <C-q> :tabp<CR>  " Переключение на предыдущую вкладку
+nnoremap <C-e> :tabn<CR>      " Переключение на следующую вкладку
+nnoremap <C-l> :tabnew<cfile><CR>
 nnoremap <C-x> :b#<CR>
-nnoremap <C-S-l> :e <cfile><CR>
+
+nnoremap <C-S-k> :e <cfile><CR>
 
 
 "" Настройка функции для правильного закрытия NERDTree и других окон
@@ -40,9 +49,6 @@ syntax enable
 highlight MyError ctermfg=red guifg=red
 syntax match MyError /\<error\|ERROR!\|ERROR\>/
 
-" Горячие клавиши для вкладок
-nnoremap <C-q> :tabprevious<CR>  " Переключение на предыдущую вкладку
-nnoremap <C-e> :tabnext<CR>      " Переключение на следующую вкладку
 
 " Горячие клавиши для окон
 nnoremap <C-w> <C-w>w           " Переключение между окнами
@@ -92,7 +98,4 @@ vnoremap <C-C> "+y                " Копирование выделенног�
 
 " Горячие клавиши для NERDTree
 nnoremap <C-t> :NERDTreeToggle<CR>    " Открыть/закрыть NERDTree
-nnoremap <C-Alt-f> :NERDTreeFind<CR>  " Найти текущий файл в NERDTree
-
-
-
+n
