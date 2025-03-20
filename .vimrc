@@ -4,6 +4,12 @@ set mouse=a
 set wrapscan
 set hlsearch
 
+" Настройка выхода из всех режимов при нажатии Esc
+inoremap <Esc> <Esc>         " Выход из режима вставки
+vnoremap <Esc> <Esc>         " Выход из визуального режима
+cnoremap <Esc> <C-c>         " Выход из командной строки
+tnoremap <Esc> <C-\><C-n>    " Выход из терминального режима
+
 
 " Горячие клавиши для вкладок
 nnoremap <C-q> :tabp<CR>  " Переключение на предыдущую вкладку
