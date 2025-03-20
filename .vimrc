@@ -1,22 +1,8 @@
 " Включение поддержки мыши
-set mouse=n
-set mouse=i
-set mouse=v
-set mouse=c
+set mouse=a
+
 set wrapscan
 set hlsearch
-
-
-"Turn off all this keys
-nnoremap a <nop>
-nnoremap A <nop>
-nnoremap o <nop>
-nnoremap O <nop>
-vnoremap a <nop>
-vnoremap A <nop>
-vnoremap o <nop>
-vnoremap O <nop>
-vnoremap <C-v> <nop>
 
 
 " Горячие клавиши для вкладок
