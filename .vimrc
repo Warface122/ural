@@ -1,10 +1,37 @@
 " Включение поддержки мыши
 set mouse=a
 
-nnoremap <C-l> :tabe <cfile><CR>
-nnoremap <C-x> :b#<CR>
-nnoremap <C-S-l> :e <cfile><CR>
+"nnoremap <C-l> :tabe <cfile><CR>
+"nnoremap <C-x> :b#<CR>
+"nnoremap <C-S-l> :e <cfile><CR>
 
+" Функция открытия выбранного пути
+function! OpenSelectedPath()
+  if mode() ==# 'v'
+    let l:sel = getline("'<", "'>")
+    let l:path = join(l:sel, "\n")
+  elseif getreg('*') != ''
+    let l:path = getreg('*')
+  else
+    let l:path = expand('<cfile>')
+  endif
+  let l:path = substitute(l:path, '^\s*\|\s*$', '', '')
+  if l:path !~ '^/'
+    let l:fullpath = expand('%:p:h') . '/' . l:path
+  else
+    let l:fullpath = l:path
+  endif
+  let l:fullpath = fnamemodify(l:fullpath, ':p')
+  if filereadable(l:fullpath) || isdirectory(l:fullpath)
+    execute 'tabnew ' . fnameescape(l:fullpath)
+  else
+    echo "Нет такой ссылки: " . l:fullpath
+  endif
+endfunction
+
+" Настройки для использования функции открытия пути
+nnoremap <C-l> :call OpenSelectedPath()<CR>
+vnoremap <C-l> :<C-u>call OpenSelectedPath()<CR>
 
 "" Настройка функции для правильного закрытия NERDTree и других окон
 function! CustomQuit()
