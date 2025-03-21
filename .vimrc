@@ -111,33 +111,3 @@ match SuccessWords /\<success\>\|\<SUCCESS\>\|\<Success\>/
 
 " Горячие клавиши для NERDTree
 nnoremap <C-t> :NERDTreeToggle<CR>    " Открыть/закрыть NERDTreen
-
-
-
-
-" Универсальная функция для выравнивания строк с числами
-function! AlignTextWithNumbers()
-    " Сохраняем текущую позицию курсора
-    let save_cursor = getpos(".")
-
-    " Создаем временный буфер
-    new
-
-    " Проходим по всем строкам и выбираем те, что содержат числа
-    g/\d\+/yank A
-    put A
-
-    " Удаляем лишние пробелы
-    execute '%s/\s\+/ /g'
-
-    " Выравниваем строки по столбцам
-    execute '%!column -t'
-
-    " Возвращаемся в основной буфер
-    bdelete!
-    call setpos('.', save_cursor)
-endfunction
-
-" Назначение горячей клавиши (например, Ctrl+A)
-nnoremap <C-A> :call AlignTextWithNumbers()<CR>
-
