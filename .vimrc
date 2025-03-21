@@ -3,6 +3,7 @@ set mouse=a
 
 set wrapscan
 set hlsearch
+set incsearch
 
 set timeout timeoutlen=10
 
@@ -52,15 +53,6 @@ autocmd BufEnter * if bufname() =~ 'NERD_tree_' && winnr('$') == 1 | quit | endi
 " Включение подсветки синтаксиса
 syntax enable
 
-" Подсветка слов ERROR в красный цвет
-highlight ErrorWords ctermbg=none ctermfg=red guibg=none guifg=red
-autocmd VimEnter * match ErrorWords /\<Error\>\|\<ERROR\>\|\<ERROR!\>/
-
-" Подсветка слов SUCCESS в зелёный цвет
-highlight SuccessWords ctermbg=none ctermfg=green guibg=none guifg=green
-autocmd VimEnter * match SuccessWords /\<success\>\|\<SUCCESS\>\|\<Success\>/
-
-
 " Горячие клавиши для окон
 nnoremap <C-w> <C-w>w           " Переключение между окнами
 
@@ -106,6 +98,16 @@ set clipboard=unnamedplus
 " Горячие клавиши для копирования в системный буфер
 nnoremap <C-C> "+y                " Копирование в системный буфер
 vnoremap <C-C> "+y                " Копирование выделенного текста в системный буфер
+
+" Подсветка слов ERROR в красный цвет
+highlight ErrorWords ctermbg=none ctermfg=red guibg=none guifg=red
+match ErrorWords /\<Error\>\|\<ERROR\>\|\<ERROR!\>/
+
+" Подсветка слов SUCCESS в зелёный цвет
+highlight SuccessWords ctermbg=none ctermfg=green guibg=none guifg=green
+match SuccessWords /\<success\>\|\<SUCCESS\>\|\<Success\>/
+
+
 
 " Горячие клавиши для NERDTree
 nnoremap <C-t> :NERDTreeToggle<CR>    " Открыть/закрыть NERDTreen
