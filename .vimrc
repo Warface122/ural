@@ -52,9 +52,13 @@ autocmd BufEnter * if bufname() =~ 'NERD_tree_' && winnr('$') == 1 | quit | endi
 " Включение подсветки синтаксиса
 syntax enable
 
-" Настройка отображения ошибок
-highlight MyError ctermfg=red guifg=red
-syntax match MyError /\<error\|ERROR!\|ERROR\>/
+" Подсветка слов ERROR в красный цвет
+highlight ErrorWords ctermbg=none ctermfg=red guibg=none guifg=red
+autocmd VimEnter * match ErrorWords /\<Error\>\|\<ERROR\>\|\<ERROR!\>/
+
+" Подсветка слов SUCCESS в зелёный цвет
+highlight SuccessWords ctermbg=none ctermfg=green guibg=none guifg=green
+autocmd VimEnter * match SuccessWords /\<success\>\|\<SUCCESS\>\|\<Success\>/
 
 
 " Горячие клавиши для окон
