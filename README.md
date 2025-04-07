@@ -8,4 +8,4 @@ STEP 4: cd to /ural
 step 5: run ./install.sh 
 step 6: restart terminal 
 
-Thanck you :)
+Thank you :)
