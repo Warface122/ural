@@ -73,7 +73,9 @@ set clipboard=unnamedplus
 " Горячие клавиши для копирования в системный буфер
 nnoremap <C-C> "+y                " Копирование в системный буфер
 vnoremap <C-C> "+y                " Копирование выделенного текста в системный буфер
-
+imap <C-V> <C-R>+                 " Past text from clipboard    
 
 " Горячие клавиши для NERDTree
 nnoremap <C-t> :NERDTreeToggle<CR>    " Открыть/закрыть NERDTreen
+
+
