@@ -1,6 +1,8 @@
 " Включение поддержки мыши
 set mouse=a
 
+set backspace=indent,eol,start
+set isfname+=@
 set wrapscan
 set hlsearch
 set incsearch
@@ -11,44 +13,17 @@ set timeout timeoutlen=10
 inoremap <Esc> <Esc>         " Выход из режима вставки
 vnoremap <Esc> <Esc>         " Выход из визуального режима
 cnoremap <Esc> <C-c>         " Выход из командной строки
-tnoremap <Esc> <C-\><C-n>    " Выход из терминального режима
 
 
 " Горячие клавиши для вкладок
 nnoremap <C-q> :tabp<CR>  " Переключение на предыдущую вкладку
 nnoremap <C-e> :tabn<CR>      " Переключение на следующую вкладку
-nnoremap <C-l> :tabnew<cfile><CR>
+nnoremap <C-l> :execute 'tabnew' fnameescape(expand('<cfile>')) <CR>
+autocmd TabEnter * silent! lcd %:p:h
+
 nnoremap <C-x> :b#<CR>
 
 nnoremap <C-S-k> :e <cfile><CR>
-
-
-"" Настройка функции для правильного закрытия NERDTree и других окон
-function! CustomQuit()
-  " Если это NERDTree и только одно окно, полностью закрыть Vim
-  if bufname() =~ 'NERD_tree_' && winnr('$') == 1
-    quit
-  " Если это NERDTree, но есть другие окна
-  elseif bufname() =~ 'NERD_tree_'
-    execute 'NERDTreeClose'
-    " Проверяем, если это последний оставшийся буфер, закрыть Vim
-    if winnr('$') == 1
-      quit
-    endif
-  " Закрываем терминал или другие буферы
-  else
-    quit
-  endif
-endfunction
-
-" Переопределение команды :q на вызов CustomQuit
-command! -nargs=0 Q call CustomQuit()
-
-" Привязка <Ctrl+T> для вызова команды :Q
-nnoremap <C-t> :Q<CR>
-
-" Авто-закрытие Vim, если остаётся только NERDTree
-autocmd BufEnter * if bufname() =~ 'NERD_tree_' && winnr('$') == 1 | quit | endif
 
 " Включение подсветки синтаксиса
 syntax enable
@@ -60,8 +35,8 @@ nnoremap <C-w> <C-w>w           " Переключение между окнам
 set number
 
 " Автооткрытие NERDTree при запуске, если открыта папка
-autocmd VimEnter * NERDTree
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_' && winnr('$') == 1 | quit | endif
+"autocmd VimEnter * NERDTree
+"autocmd BufEnter * if bufname('#') =~ 'NERD_tree_' && winnr('$') == 1 | quit | endif
 
 " Инициализация менеджера плагинов Vim-Plug
 call plug#begin('~/.vim/plugged')
@@ -98,15 +73,6 @@ set clipboard=unnamedplus
 " Горячие клавиши для копирования в системный буфер
 nnoremap <C-C> "+y                " Копирование в системный буфер
 vnoremap <C-C> "+y                " Копирование выделенного текста в системный буфер
-
-" Подсветка слов ERROR в красный цвет
-highlight ErrorWords ctermbg=none ctermfg=red guibg=none guifg=red
-match ErrorWords /\<Error\>\|\<ERROR\>\|\<ERROR!\>/
-
-" Подсветка слов SUCCESS в зелёный цвет
-highlight SuccessWords ctermbg=none ctermfg=green guibg=none guifg=green
-match SuccessWords /\<success\>\|\<SUCCESS\>\|\<Success\>/
-
 
 
 " Горячие клавиши для NERDTree
