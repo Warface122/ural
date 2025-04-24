@@ -1,13 +1,18 @@
-" Включение поддержки мыши
-set mouse=a
-
+set mouse=a            " Включение поддержки мыши
 set backspace=indent,eol,start
 set isfname+=@
 set wrapscan
 set hlsearch
 set incsearch
-
+set guioptions-=m   	 "Turn off Menu    	
+set guioptions-=T   	 "Turn off Panel settings
+set guioptions-=l	     "Turn off left slider	
+set guioptions-=r    	 "Turn off right slider
 set timeout timeoutlen=10
+set clipboard=unnamedplus    " Включение системного буфера обмена
+set number                   " Включение номеров строк
+"set lines=50
+"set columns=150
 
 " Настройка выхода из всех режимов при нажатии Esc
 inoremap <Esc> <Esc>         " Выход из режима вставки
@@ -22,7 +27,6 @@ nnoremap <C-l> :execute 'tabnew' fnameescape(expand('<cfile>')) <CR>
 autocmd TabEnter * silent! lcd %:p:h
 
 nnoremap <C-x> :b#<CR>
-
 nnoremap <C-S-k> :e <cfile><CR>
 
 " Включение подсветки синтаксиса
@@ -30,9 +34,6 @@ syntax enable
 
 " Горячие клавиши для окон
 nnoremap <C-w> <C-w>w           " Переключение между окнами
-
-" Включение номеров строк
-set number
 
 " Автооткрытие NERDTree при запуске, если открыта папка
 "autocmd VimEnter * NERDTree
@@ -59,7 +60,7 @@ call plug#end()
 colorscheme iceberg
 set background=dark
 
-" Включение vim-airline и использование цветовой схемы gruvbox
+" Включение vim-airline и использование цветовой схемы 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme='iceberg'
@@ -67,15 +68,10 @@ let g:airline_theme='iceberg'
 " Горячая клавиша для замены текста во всем файле (Ctrl+Shift+R)
 nnoremap <C-S-r> :%s/\<<C-r><C-w>\>//g<Left><Left>
 
-" Включение системного буфера обмена
-set clipboard=unnamedplus
-
 " Горячие клавиши для копирования в системный буфер
 nnoremap <C-C> "+y                " Копирование в системный буфер
 vnoremap <C-C> "+y                " Копирование выделенного текста в системный буфер
 imap <C-V> <C-R>+                 " Past text from clipboard    
 
 " Горячие клавиши для NERDTree
-nnoremap <C-t> :NERDTreeToggle<CR>    " Открыть/закрыть NERDTreen
-
-
+nnoremap <C-t> :NERDTreeToggle<CR>    " Открыть/закрыть NERDTree
