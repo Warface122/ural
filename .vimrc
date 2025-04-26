@@ -80,15 +80,16 @@ imap <C-V> <C-R>+                 " Past text from clipboard
 " Горячие клавиши для NERDTree
 nnoremap <C-t> :NERDTreeToggle<CR>    " Открыть/закрыть NERDTree
 
-" Перемещение строки вверх при нажатии Ctrl+Up
-inoremap <C-Up> :m .-2<CR>==
+" Перемещение строки вверх при нажатии Alt+Up
+nnoremap <M-Up> :m .-2<CR>==
 
-" Перемещение строки вниз при нажатии Ctrl+Down
-inoremap <C-Down> :m .+1<CR>==
+" Перемещение строки вниз при нажатии Alt+Down
+nnoremap <M-Down> :m .+1<CR>==
 
-" Перемещение выделенных строк вверх при нажатии Ctrl+Up
-vnoremap <C-Up> :m '<-2<CR>gv=gv
+" Перемещение выделенных строк вверх при нажатии Alt+Up в визуальном режиме
+vnoremap <M-Up> :m '<-2<CR>gv=gv
 
-" Перемещение выделенных строк вниз при нажатии Ctrl+Down
-vnoremap <C-Down> :m '>+1<CR>gv=gv
+" Перемещение выделенных строк вниз при нажатии Alt+Down в визуальном режиме
+vnoremap <M-Down> :m '>+1<CR>gv=gv
+
 
