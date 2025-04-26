@@ -5,10 +5,10 @@ set isfname+=@
 set wrapscan
 set hlsearch
 set incsearch
-set guioptions-=m   	 "Turn off Menu    	
-set guioptions-=T   	 "Turn off Panel settings
-set guioptions-=l	     "Turn off left slider	
-set guioptions-=r    	 "Turn off right slider
+set guioptions-=m   	   "Turn off Menu    	
+set guioptions-=T   	   "Turn off Panel settings
+set guioptions-=l	       "Turn off left slider	
+set guioptions-=r    	   "Turn off right slider
 set timeout timeoutlen=10
 set clipboard=unnamedplus    " Включение системного буфера обмена
 set termguicolors
@@ -73,6 +73,12 @@ let g:airline#extensions#tabline#right_sep = '  '
 let g:airline#extensions#tabline#right_alt_sep = '  '
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#tab_nr_type = 1
+
+
+" Цвет активной вкладки: голубой фон и белый текст
+highlight AirlineTabFill ctermfg=white ctermbg=blue guifg=white guibg=blue
+highlight AirlineTabActive ctermfg=white ctermbg=blue guifg=white guibg=blue
+
 
 " Горячая клавиша для замены текста во всем файле (Ctrl+Shift+R)
 nnoremap <C-S-r> :%s/\<<C-r><C-w>\>//g<Left><Left>
