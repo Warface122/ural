@@ -17,12 +17,10 @@ set number                   " Включение номеров строк
 "set lines=50
 "set columns=150
 
-
 " Настройка выхода из всех режимов при нажатии Esc
 inoremap <Esc> <Esc>         " Выход из режима вставки
 vnoremap <Esc> <Esc>         " Выход из визуального режима
 cnoremap <Esc> <C-c>         " Выход из командной строки
-
 
 " Горячие клавиши для вкладок
 nnoremap <C-q> :tabp<CR>  " Переключение на предыдущую вкладку
@@ -75,8 +73,6 @@ let g:airline#extensions#tabline#right_sep = '  '
 let g:airline#extensions#tabline#right_alt_sep = '  '
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#tab_nr_type = 1
-
-
 
 " Горячая клавиша для замены текста во всем файле (Ctrl+Shift+R)
 nnoremap <C-S-r> :%s/\<<C-r><C-w>\>//g<Left><Left>
