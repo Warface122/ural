@@ -39,16 +39,17 @@ autocmd TabEnter * silent! lcd %:p:h
 set tabline=%!MyTabLine()
 
 function! MyTabLine()
-    let s = ''
-    for i in range(tabpagenr('$'))
-        let winnr = tabpagewinnr(i + 1)
-        let bufnr = winbufnr(winnr)
-        let bufname = bufname(bufnr)
-        let filename = fnamemodify(bufname, ':t')
-        let s .= '%' . (i + 1) . 'T' . filename . ' '
-    endfor
-    return s
+    let s = ''
+    for i in range(tabpagenr('$'))
+        let winnr = tabpagewinnr(i + 1)
+        let bufnr = winbufnr(winnr)
+        let bufname = bufname(bufnr)
+        let filename = fnamemodify(bufname, ':t')
+        let s .= '%' . (i + 1) . 'T' . filename . ' '
+    endfor
+    return s
 endfunction
+
 
 
 nnoremap <C-x> :b#<CR>
