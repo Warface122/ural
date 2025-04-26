@@ -49,9 +49,8 @@ Plug 'morhetz/gruvbox'
 Plug 'arzg/vim-colors-xcode'
 Plug 'gkeep/iceberg-dark'
 Plug 'cocopon/iceberg.vim'
-"Plug 'vim-airline/vim-airline'
-Plug 'EdenEast/nightfox.nvim' 
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+"Plug 'itchyny/lightline.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
@@ -61,13 +60,13 @@ Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " Установка цветовой схемы
-colorscheme nightfox
-set background=carbonfox
+colorscheme gruvbox
+set background=dark
 
 " Включение vim-airline и использование цветовой схемы 
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline_powerline_fonts = 1
-"let g:airline_theme='iceberg'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='gruvbox'
 
 " Горячая клавиша для замены текста во всем файле (Ctrl+Shift+R)
 nnoremap <C-S-r> :%s/\<<C-r><C-w>\>//g<Left><Left>
