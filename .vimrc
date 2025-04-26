@@ -50,7 +50,7 @@ Plug 'morhetz/gruvbox'
 Plug 'arzg/vim-colors-xcode'
 Plug 'gkeep/iceberg-dark'
 Plug 'cocopon/iceberg.vim'
-Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'    "itchyny/lightline.vim analog 
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
@@ -60,8 +60,9 @@ Plug 'preservim/nerdtree'
 call plug#end()
 
 " Установка цветовой схемы
-colorscheme gruvbox
+let g:gruvbox_contrast_dark = 'hard'
 set background=dark
+colorscheme gruvbox
 
 " Включение vim-airline и использование цветовой схемы 
 let g:airline#extensions#tabline#enabled = 1
@@ -78,3 +79,16 @@ imap <C-V> <C-R>+                 " Past text from clipboard
 
 " Горячие клавиши для NERDTree
 nnoremap <C-t> :NERDTreeToggle<CR>    " Открыть/закрыть NERDTree
+
+" Перемещение строки вверх при нажатии Ctrl+Up
+nnoremap <C-Up> :m .-2<CR>==
+
+" Перемещение строки вниз при нажатии Ctrl+Down
+nnoremap <C-Down> :m .+1<CR>==
+
+" Перемещение выделенных строк вверх при нажатии Ctrl+Up
+vnoremap <C-Up> :m '<-2<CR>gv=gv
+
+" Перемещение выделенных строк вниз при нажатии Ctrl+Down
+vnoremap <C-Down> :m '>+1<CR>gv=gv
+
