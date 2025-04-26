@@ -56,7 +56,6 @@ Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'preservim/nerdtree'
-"Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
