@@ -50,7 +50,7 @@ Plug 'arzg/vim-colors-xcode'
 Plug 'gkeep/iceberg-dark'
 Plug 'cocopon/iceberg.vim'
 "Plug 'vim-airline/vim-airline'
-Plug 'shapeoflambda/dark-purple.vim'
+Plug 'EdenEast/nightfox.nvim' 
 Plug 'itchyny/lightline.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
@@ -61,29 +61,13 @@ Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " Установка цветовой схемы
-colorscheme dark_purple
-set background=dark
+colorscheme nightfox
+set background=carbonfox
 
 " Включение vim-airline и использование цветовой схемы 
 "let g:airline#extensions#tabline#enabled = 1
 "let g:airline_powerline_fonts = 1
 "let g:airline_theme='iceberg'
-
-" Включение lightline и использование цветовой схемы 
-set laststatus=2
-let g:lightline = {
-      \ 'colorscheme': 'dark_purple',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             ['readonly', 'filename', 'modified' ] ],
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'filetype' ],
-      \              [ 'gitbranch'] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ }
 
 " Горячая клавиша для замены текста во всем файле (Ctrl+Shift+R)
 nnoremap <C-S-r> :%s/\<<C-r><C-w>\>//g<Left><Left>
