@@ -81,10 +81,10 @@ imap <C-V> <C-R>+                 " Past text from clipboard
 nnoremap <C-t> :NERDTreeToggle<CR>    " Открыть/закрыть NERDTree
 
 " Перемещение строки вверх при нажатии Ctrl+Up
-nnoremap <C-Up> :m .-2<CR>==
+inoremap <C-Up> :m .-2<CR>==
 
 " Перемещение строки вниз при нажатии Ctrl+Down
-nnoremap <C-Down> :m .+1<CR>==
+inoremap <C-Down> :m .+1<CR>==
 
 " Перемещение выделенных строк вверх при нажатии Ctrl+Up
 vnoremap <C-Up> :m '<-2<CR>gv=gv
