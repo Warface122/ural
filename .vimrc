@@ -13,6 +13,7 @@ set timeout timeoutlen=10
 set clipboard=unnamedplus    " Включение системного буфера обмена
 set termguicolors
 set number                   " Включение номеров строк
+"set guitablabel=%t%m
 "set lines=50
 "set columns=150
 
