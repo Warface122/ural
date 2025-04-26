@@ -74,12 +74,6 @@ let g:airline#extensions#tabline#right_alt_sep = '  '
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#tab_nr_type = 1
 
-
-" Цвет активной вкладки: голубой фон и белый текст
-highlight AirlineTabFill ctermfg=white ctermbg=blue guifg=white guibg=blue
-highlight AirlineTabActive ctermfg=white ctermbg=blue guifg=white guibg=blue
-
-
 " Горячая клавиша для замены текста во всем файле (Ctrl+Shift+R)
 nnoremap <C-S-r> :%s/\<<C-r><C-w>\>//g<Left><Left>
 
