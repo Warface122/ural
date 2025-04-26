@@ -1,5 +1,6 @@
 set mouse=a            " Включение поддержки мыши
 set backspace=indent,eol,start
+set completeopt=menu,menuone,noselect   "ctrl+n auto-helper
 set isfname+=@
 set wrapscan
 set hlsearch
@@ -50,12 +51,11 @@ Plug 'arzg/vim-colors-xcode'
 Plug 'gkeep/iceberg-dark'
 Plug 'cocopon/iceberg.vim'
 Plug 'vim-airline/vim-airline'
-"Plug 'itchyny/lightline.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'preservim/nerdtree'
-Plug 'ryanoasis/vim-devicons'
+"Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
