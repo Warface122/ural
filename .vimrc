@@ -26,8 +26,30 @@ cnoremap <Esc> <C-c>         " Выход из командной строки
 " Горячие клавиши для вкладок
 nnoremap <C-q> :tabp<CR>  " Переключение на предыдущую вкладку
 nnoremap <C-e> :tabn<CR>      " Переключение на следующую вкладку
+"nnoremap <C-l> :execute 'tabnew' fnameescape(expand('<cfile>')) <CR>
+"autocmd TabEnter * silent! lcd %:p:h
+
+" Открытие новой вкладки с файлом при нажатии Ctrl+L
 nnoremap <C-l> :execute 'tabnew' fnameescape(expand('<cfile>')) <CR>
+
+" Автоматическое изменение текущего каталога при переходе на вкладку
 autocmd TabEnter * silent! lcd %:p:h
+
+" Настройка строки вкладок для отображения только имени файла
+set tabline=%!MyTabLine()
+
+function! MyTabLine()
+    let s = ''
+    for i in range(tabpagenr('$'))
+        let winnr = tabpagewinnr(i + 1)
+        let bufnr = winbufnr(winnr)
+        let bufname = bufname(bufnr)
+        let filename = fnamemodify(bufname, ':t')
+        let s .= '%' . (i + 1) . 'T' . filename . ' '
+    endfor
+    return s
+endfunction
+
 
 nnoremap <C-x> :b#<CR>
 nnoremap <C-S-k> :e <cfile><CR>
