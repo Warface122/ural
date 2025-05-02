@@ -29,7 +29,7 @@ nnoremap <C-l> :execute 'tabnew' fnameescape(expand('<cfile>')) <CR>
 autocmd TabEnter * silent! lcd %:p:h
 
 nnoremap <C-x> :b#<CR>
-nnoremap <C-S-k> :e <cfile><CR>
+nnoremap <C-k> :e <cfile><CR>
 
 " Включение подсветки синтаксиса
 syntax enable
@@ -75,12 +75,12 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#tab_nr_type = 1
 
 " Горячая клавиша для замены текста во всем файле (Ctrl+Shift+R)
-nnoremap <C-S-r> :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap <M-r> :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " Горячие клавиши для копирования в системный буфер
-nnoremap <C-C> "+y                " Копирование в системный буфер
-vnoremap <C-C> "+y                " Копирование выделенного текста в системный буфер
-imap <C-V> <C-R>+                 " Past text from clipboard    
+nnoremap <C-C> "+y
+vnoremap <C-C> "+y                
+imap <C-V> <C-R>+                   
 
 " Горячие клавиши для NERDTree
 nnoremap <C-t> :NERDTreeToggle<CR>    " Открыть/закрыть NERDTree
